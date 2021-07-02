@@ -16,12 +16,6 @@ function Home() {
         component={HomeScreen}
         options={{
           title: '최근 재생한 항목',
-          headerLeft: () => (
-            <Image
-              style={styles.tinyLogo}
-              source={require('./../../../assets/logo.png')}
-            />
-          ),
           headerRight: () => (
             <View style={{ flexDirection: 'row' }}>
               <Icon key={0} name="inbox" color={colors.text} size={30} style={{ paddingRight:10 }}/>
