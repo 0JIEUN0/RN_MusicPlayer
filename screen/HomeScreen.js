@@ -15,7 +15,7 @@ function Home() {
         name="Home" 
         component={HomeScreen}
         options={{
-          title: () => {return null},
+          title: '최근 재생한 항목',
           headerLeft: () => (
             <Image
               style={styles.tinyLogo}

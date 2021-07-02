@@ -3,11 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
 
-import HomeScreen from './component/view/home/HomeScreen'
-import SearchScreen from './component/view/search/SearchScreen'
-import UploadScreen from './component/view/UploadScreen'
-import NoticeScreen from './component/view/NoticeScreen'
-import MypageScreen from './component/view/MypageScreen'
+import HomeScreen from './screen/HomeScreen'
+import SearchScreen from './screen/SearchScreen'
+import UploadScreen from './screen/UploadScreen'
+import NoticeScreen from './screen/NoticeScreen'
+import MypageScreen from './screen/MypageScreen'
 
 const Tab = createBottomTabNavigator();
 const DarkTheme = {
