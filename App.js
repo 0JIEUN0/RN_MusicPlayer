@@ -15,11 +15,11 @@ const DarkTheme = {
   //...DefaultTheme,
   dark: true,
   colors: {
-    primary: 'rgb(0, 205, 60)',
-    text: 'rgb(150, 150, 150)',
-    background: 'rgb(28, 28, 30)',
-    card: 'rgb(28, 28, 30)',
-    border: 'rgb(28, 28, 30)',
+    primary:  'rgb(30, 215, 96)', // : Spotify Main Color [Green]
+    text: 'rgb(255, 255, 255)', // : Spotify Main Color [White]
+    background: 'rgb(25, 20, 20)', // : Spotify Main Color [Black]
+    card: 'rgb(25, 20, 20)',
+    border: 'rgb(25, 20, 20)',
     notification: 'rgb(255, 69, 58)',
   },
 };
