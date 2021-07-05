@@ -2,8 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
-import { Left, Right, Button, Thumbnail, Tab, Tabs, TabHeading } from 'native-base';
 import Icon from 'react-native-vector-icons/Feather';
+import MusicGenreView from '../component/MusicGenreView';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +23,7 @@ function SearchScreen() {
 function Search( { navigation }) {
   const { colors } = useTheme();
   const [query, setQuery] = useState("")
+
   const searchQuery = async() => {
     console.log(query)
   }
@@ -41,6 +42,10 @@ function Search( { navigation }) {
           onChangeText={(e)=> {setQuery(e.value)}} 
           onSubmitEditing = {() => searchQuery()}>
         </TextInput>
+      </View>
+
+      <MusicGenreView />      
+
       {/*
       {
         isLoading ?
@@ -50,7 +55,6 @@ function Search( { navigation }) {
           </Book>)
           : message
       } */}
-      </View>
     </View>
   );
 }
