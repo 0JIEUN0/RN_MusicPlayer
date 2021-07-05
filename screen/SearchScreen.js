@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
 import { Text, View, StyleSheet, TextInput } from 'react-native';
 import { useTheme } from '@react-navigation/native';
 import { createStackNavigator, HeaderTitle } from '@react-navigation/stack';
 import { Left, Right, Button, Thumbnail, Tab, Tabs, TabHeading } from 'native-base';
 import Icon from 'react-native-vector-icons/Feather';
-import { key_secret } from "../key"
 
 const Stack = createStackNavigator();
 
@@ -26,36 +24,7 @@ function Search( { navigation }) {
   const { colors } = useTheme();
   const [query, setQuery] = useState("")
   const searchQuery = async() => {
-    const requestUri = "https://accounts.spotify.com/api/token"
-    if(query == ""){
-      // nothing to search
-    } else {
-      await axios.post(requestUri, {
-        headers: {
-          "Authorization": key_secret,
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        data: {
-          "grant_type": "client_credentials"
-        }
-      })
-      .then(function(response){
-        // handle success
-        console.log("success")
-        console.log(response.headers)
-        console.log(response.status)
-        console.log(response.data)
-        console.log(response.statusText)
-      }).catch(function(error){
-        console.log("API 오류")
-        if(error.response){
-          console.log(error.response.data);
-          console.log(error.status);
-          console.log(error.response.headers);
-          console.log(error.message);
-        }
-      })
-    }
+    console.log(query)
   }
 
   return (

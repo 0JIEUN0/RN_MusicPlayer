@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
+import { getAccessTokenByClientCredentialsFlow } from './spotify/Spotify'
 
 import HomeScreen from './screen/HomeScreen'
 import SearchScreen from './screen/SearchScreen'
@@ -24,6 +25,10 @@ const DarkTheme = {
 };
 
 function BottomTab() {
+  useEffect(() => {
+    getAccessTokenByClientCredentialsFlow();
+  }, []);
+
   return (
     <NavigationContainer theme={DarkTheme}>
       <Tab.Navigator>
