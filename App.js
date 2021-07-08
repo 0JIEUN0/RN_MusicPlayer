@@ -15,18 +15,18 @@ const DarkTheme = {
   //...DefaultTheme,
   dark: true,
   colors: {
-    primary:  'rgb(30, 215, 96)', // : Spotify Main Color [Green]
-    text: 'rgb(255, 255, 255)', // : Spotify Main Color [White]
-    background: 'rgb(25, 20, 20)', // : Spotify Main Color [Black]
-    card: 'rgb(25, 20, 20)',
-    border: 'rgb(25, 20, 20)',
-    notification: 'rgb(255, 69, 58)',
+    primary:  '#1D8954', // : Spotify Main Color [Green]
+    text: '#FFFFFF', // : Spotify Main Color [White]
+    background: '#191414', // : Spotify Main Color [Black]
+    card: '#191414',
+    border: '#191414',
+    notification: '#1DB954',
   },
 };
 
 function BottomTab() {
   useEffect(() => {
-    //getAccessTokenByClientCredentialsFlow();
+    getAccessTokenByClientCredentialsFlow();
   }, []);
 
   return (
@@ -35,9 +35,9 @@ function BottomTab() {
         //activeTintColor: '#ffffff',
         //inactiveTintColor: '#888888',
         //activeBackgroundColor: '#ffffff',
-        inactiveBackgroundColor: 'rgb(40, 40, 40)',
+        inactiveBackgroundColor: DarkTheme.colors.background,
             style: {
-                  backgroundColor: 'rgb(40, 40, 40)',
+                  backgroundColor: DarkTheme.colors.background,
                   paddingBottom: 0,
             }
     }}>
