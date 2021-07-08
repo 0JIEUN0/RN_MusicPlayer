@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect} from 'react';
 import { StyleSheet, View, Text, Image, FlatList, SafeAreaView, Dimensions } from 'react-native';
 import Genre from './Genre';
-import { albums } from '../tempdata';
+import { browseCategories } from '../spotify/Spotify'
 
 function MusicGenreView ( props ) {
+    const [categories, setCategories] = useState({})
+
+    useEffect(() => {
+        browseCategories()
+        .then(response => setCategories(response['categories']['items']))
+        .then(console.log(categories))
+    }, [])
+    //console.log(categories.length)
+
     return (
         <SafeAreaView>
             <FlatList
-                data={albums}
+                data={categories}
                 renderItem={({item}) =>
                     <Genre item={item} />}
                 horizontal={false}
                 //Setting the number of column
                 numColumns={2}
-                key={albums.length}
+                key={categories.length}
                 style={styles.container}>
             </FlatList>
         </SafeAreaView >
@@ -22,7 +31,9 @@ function MusicGenreView ( props ) {
 
 const styles = StyleSheet.create({
     container: {
-        top: -200,
+        top: 0,
+        marginTop: 30,
+        marginHorizontal: 3,
         position: 'absolute',
     },
 });

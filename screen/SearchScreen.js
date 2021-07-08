@@ -62,26 +62,16 @@ function Search( { navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 50,
-    flex: 1, 
-    justifyContent: 'center' 
   },
   inputBox: {
     position: 'absolute',
     backgroundColor: 'white',
     top: 1,
-    position: 'absolute',
     width: '100%',
     marginHorizontal: 10,
     padding: 5,
     flexDirection: 'row',
     alignItems: 'center',
-  },
-  tinyLogo: {
-    position: 'absolute',
-    width: 30,
-    height: 35,
-    padding: 10,
-    margin: 20,
   },
 });
 
