@@ -33,32 +33,32 @@ export const handelGetAccessToken = async (url, headers, body) => {
     });
 }
 
-export const handelApiRequest = async (uri, method, headers, body) => {
+export const handelApiRequest = async (url, method, headers, body) => {
+    const newHeaders = {...headers, 'Authorization': 'Bearer ' + accessTokenByClientCredentialsFlow }
+    //axios.interceptors.request.use(request => {
+    //console.log('Starting Request', JSON.stringify(request, null, 2))
+    //})    
+    
+    var result;
     await axios({
         method: method,
-        url: uri,
-        headers: headers,
+        url: url,
+        headers: newHeaders,
         data: body,
         timeout: 1000,
-        auth: {
-        },
-    }).then((response) => {
-        console.log(response);
-        console.log(response.headers)
-        console.log(response.status)
-        console.log(response.data)
-        console.log(response.statusText)
-
-        return response
-    }).catch((err) => {
-        console.log(err)
-        console.log("API 오류")
-            if(error.response){
-                console.log(error.response.data);
-                console.log(error.status);
-                console.log(error.response.headers);
-                console.log(error.message);
-            }
-            return undefined
+    })
+    .then(response => { result = response.data })
+    .catch((error) => {
+        console.log("error: ", error)
+        if(error.response){
+            console.log("API 오류")
+            console.log(error);
+            console.log(error.response.data);
+            console.log(error.status);
+            console.log(error.response.headers);
+            console.log(error.message);
+        }
+        return undefined
     });
+    return result
 }

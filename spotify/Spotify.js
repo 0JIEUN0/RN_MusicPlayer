@@ -1,5 +1,5 @@
 import { client_id, key_secret } from './key'
-import { handelGetAccessToken } from '../server/ServerManagement'
+import { handelGetAccessToken, handelApiRequest } from '../server/ServerManagement'
 export const authEndpoint = "https://accounts.spotify.com/authorize";
 const clientId = client_id;
 const redirectUri = "myspofity://callback/"
@@ -14,6 +14,11 @@ export const getAccessTokenByClientCredentialsFlow = () => {
     
     const response = handelGetAccessToken(requestUri, headers, body)
     console.log(response)
+}
+
+export const browseCategories = () => {
+    const requestUri = "https://api.spotify.com/v1/browse/categories?country=KR"
+    return handelApiRequest(requestUri, 'get')
 }
 
 export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&show_dialog=true`;
