@@ -17,7 +17,7 @@ function SearchScreen() {
         options={{
           title: '검색',
         }} />
-      <Stack.Screen name="Search" component={ Search } options={{titlle: ''}}/>
+      <Stack.Screen name="Search" component={ Search } options={{ headerShown: false }}/>
     </Stack.Navigator>
   );
 }
