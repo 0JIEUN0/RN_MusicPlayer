@@ -32,9 +32,7 @@ function MusicGenreView ( props ) {
 const styles = StyleSheet.create({
     container: {
         top: 0,
-        marginTop: 30,
         marginHorizontal: 3,
-        position: 'absolute',
     },
 });
 
