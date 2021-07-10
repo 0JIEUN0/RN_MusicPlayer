@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '@react-navigation/native';
-import { Text, View, StyleSheet, TextInput, Image } from 'react-native';
+import { Text, View, StyleSheet, TextInput, Image, FlatList, SafeAreaView } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { searchArtists } from '../spotify/Spotify'
 
@@ -28,7 +28,7 @@ function Search ( { navigation }) {
             }
         })
         .then(() => {
-            console.log('result', result)
+            console.log('result', result.length)
             setIsLoding(2)
         })
     }
@@ -44,14 +44,19 @@ function Search ( { navigation }) {
                 return <Text style={{...styles.mainText, color: colors.text, }}>검색 중...</Text>
             case 2:
                 return errmsg ? <Text style={{...styles.mainText, color: colors.text, }}>검색 결과가 없습니다.</Text>
-                : <View>
-                    <Image 
-                        source={{ uri: result[0].images[0].url}}
-                        style={ styles.image } />
-                    <Text style={{...styles.mainText, color: colors.text, }}>{result[0].id}</Text>
-                </View>
+                :
+                    <SafeAreaView>
+                        <FlatList
+                            data={result}
+                            renderItem={({item}) =>
+                                <Artist item={item} />}
+                            key={result.length}
+                            style={styles.container}>
+                        </FlatList>
+                    </SafeAreaView>
+                
         }
-        return <Text style={{...styles.mainText, color: colors.text, }}>no</Text>
+        return <Text style={{...styles.mainText, color: colors.text, }}>Error</Text>
     }
 
     return (
@@ -66,7 +71,7 @@ function Search ( { navigation }) {
                     placeholder="검색"
                     placeholderTextColor='#AAAAAA'
                     value={query} 
-                    style = {{fontSize: 18, color: colors.text, paddingLeft: 20, }}
+                    style = {{fontSize: 18, color: colors.text, paddingLeft: 20, flex:1 }}
                     onChangeText={(text)=> {setQuery(text)}} 
                     onSubmitEditing = {() => searchQuery()}>
                 </TextInput>
@@ -75,9 +80,23 @@ function Search ( { navigation }) {
                     style={{fontSize: 20, color: 'white', paddingLeft: 10, position: 'absolute', right: 20 }}/>
             </View>
             {
-                showResult()
+                showResult() 
             }
             
+        </View>
+    )
+}
+
+function Artist (props) {
+    const { colors } = useTheme();
+    const imgUrl = (props.item.images[0] == undefined) ? "" : props.item.images[0].url
+    console.log(imgUrl)
+    return (
+        <View style={styles.row}>
+            <Image
+                source={{ uri: imgUrl }}
+                style={ styles.image } />
+            <Text style={{ fontSize: 15, color: colors.text, marginLeft: 20}}>{props.item.name}</Text>
         </View>
     )
 }
@@ -85,10 +104,11 @@ function Search ( { navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-      paddingTop: 50,
+      marginTop: 100,
+      marginBottom: 20,
     },
     inputBox: {
-      position: 'relative',
+      position: 'absolute',
       backgroundColor: '#555555',
       top: 1,
       width: '100%',
@@ -103,9 +123,16 @@ const styles = StyleSheet.create({
         height: 80, 
         width: 80, 
         resizeMode: 'contain', 
+        marginLeft: 20,
+        borderRadius: 80,
+        overflow: "hidden",
+    },
+    row: {
         position: 'relative',
-        alignSelf: 'center',
-    }
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding: 10,
+    },
   });
   
 export default Search
