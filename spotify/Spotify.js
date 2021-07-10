@@ -20,6 +20,10 @@ export const browseCategories = () => {
     const requestUri = "https://api.spotify.com/v1/browse/categories?country=KR"
     return handelApiRequest(requestUri, 'get')
 }
+export const searchArtists = (query) => {
+    const requestUri = "https://api.spotify.com/v1/search?type=artist&limit=20&q="+query;
+    return handelApiRequest(requestUri, 'get')
+}
 
 export const accessUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=token&show_dialog=true`;
 
